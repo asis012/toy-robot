@@ -13,14 +13,15 @@ def start_game
 
 	@board = Board.new(Constant::BOARD::LENGTH, Constant::BOARD::BREADTH)
 	@toy = Toy.new
-	@command = Command.new
 
 	loop do
 		command = gets.chomp
-
+    @command = Command.new(@board, @toy, command)
+    # command = "PLACE 7,0,NORTH"
     case command
 		when /^PLACE\s*\d,\d,(NORTH|SOUTH|EAST|WEST)*$/
-			@command.place
+			error = @command.place
+      puts "ERROR: #{error}" if (error.length() > 0)
 
 		when Constant::ACTION::MOVE
 			@command.move

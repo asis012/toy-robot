@@ -1,5 +1,5 @@
 class Toy
-  attr_reader :x_position, :y_position, :direction
+  attr_accessor :x_position, :y_position, :direction
 
   def initialize(x = nil, y = nil, f = nil)
       @x_position = x
