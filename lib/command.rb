@@ -37,7 +37,7 @@ class Command
 	end
 
 	def report
-    puts "report"
+    return @toy.x_position.to_s + "," + @toy.y_position.to_s + "," + @toy.direction 
   end
 
 

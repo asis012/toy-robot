@@ -32,7 +32,7 @@ def start_game
 			@command.right
 
 		when Constant::ACTION::REPORT
-			@command.report
+			puts @command.report
 
 		when Constant::ACTION::EXIT
 			puts "Exiting the simulation. Thank You!!!"
