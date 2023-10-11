@@ -21,11 +21,13 @@ def start_game
     case command
 		when /^PLACE\s*\d,\d,(NORTH|SOUTH|EAST|WEST)*$/
 			error = @command.place
-      puts "ERROR: #{error}" if (error.length() > 0)
+      		puts "ERROR: #{error}" if (error.is_a?(Array) && error.length > 0)
 
 		when Constant::ACTION::MOVE
-			@command.move
-		when Constant::ACTION::LEFT
+			error =  @command.move
+     		 puts "ERROR: #{error}" if (error.is_a?(Array) && error.length > 0)
+	
+    	when Constant::ACTION::LEFT
 			@command.left
 
 		when Constant::ACTION::RIGHT

@@ -6,4 +6,8 @@ class Toy
       @y_position = y
       @direction = f
   end
+
+  def exist?
+    return true if @x_position  != nil || @y_position != nil || @direction != nil
+  end
 end
