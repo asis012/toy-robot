@@ -43,6 +43,7 @@ class Command
   # right will rotate the robot 90 degrees in clockwise direction without changing the position of the robot.
   def right
     current_direction = @toy.direction
+    return "invalid direction" unless Constant::DIRECTIONS.include?(current_direction)
     new_direction_index = (Constant::DIRECTIONS.index(current_direction) + 1) % Constant::DIRECTIONS.length
     @toy.direction = Constant::DIRECTIONS[new_direction_index]
   end
@@ -50,6 +51,7 @@ class Command
   # left will rotate the robot 90 degrees in anit-clockwise direction without changing the position of the robot.
   def left
     current_direction = @toy.direction
+    return "invalid direction" unless Constant::DIRECTIONS.include?(current_direction)
     new_direction_index = (Constant::DIRECTIONS.index(current_direction) - 1) % Constant::DIRECTIONS.length
     @toy.direction = Constant::DIRECTIONS[new_direction_index]
   end

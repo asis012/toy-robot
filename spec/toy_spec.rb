@@ -1,8 +1,4 @@
 require "./lib/toy"
-require "simplecov"
-SimpleCov.start do
-  add_group "lib", "./lib/toy"
-end
 
 RSpec.describe Toy do
   describe "#exist?" do

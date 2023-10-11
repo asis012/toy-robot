@@ -12,19 +12,19 @@ RSpec.describe Command do
     it "place toy with valid command PLACE 1,2,East" do
       command = Command.new(board, toy, "PLACE 1,2,EAST")
       error = command.place
-      expect(command.toy.x_position).to eq(1)
-      expect(command.toy.y_position).to eq(2)
-      expect(command.toy.direction).to eq("EAST")
+      expect(toy.x_position).to eq(1)
+      expect(toy.y_position).to eq(2)
+      expect(toy.direction).to eq("EAST")
       expect(error).to eq("")
     end
 
-    it "place toy with invalid x position command PLACE 10,0,NORTH" do
+    it "place toy with invalid x position command PLACE 10,2,EAST" do
       command = Command.new(board, toy, "PLACE 10,2,EAST")
       error = command.place
       expect(error).to include("X position can't be 5 or more than 5")
     end
 
-    it "place toy with invalid y position command PLACE 10,0,NORTH" do
+    it "place toy with invalid y position command PLACE 0,12,EAST" do
       command = Command.new(board, toy, "PLACE 0,12,EAST")
       error = command.place
       expect(error).to include("Y position can't be 5 or more than 5")
@@ -49,18 +49,18 @@ RSpec.describe Command do
     board = Board.new(Constant::BOARD::LENGTH, Constant::BOARD::BREADTH)
     toy = Toy.new
 
-    it "move toy which is in 1,2,EAST postion " do
+    it "move toy which is in 1,2,EAST postion" do
       command = Command.new(board, toy, "PLACE 1,2,EAST")
       command.place
       command.move
-      expect(command.toy.x_position).to eq(2)
+      expect(toy.x_position).to eq(2)
     end
 
     it "move toy which is in 1,2,SOUTH postion" do
       command = Command.new(board, toy, "PLACE 1,2,SOUTH")
       command.place
       command.move
-      expect(command.toy.y_position).to eq(1)
+      expect(toy.y_position).to eq(1)
     end
 
     it "move empty toy without placing" do
@@ -81,6 +81,66 @@ RSpec.describe Command do
       command.place
       error = command.move
       expect(error).to include("Toy cannot move in WEST direction as it's next position doesn't exist in board")
+    end
+  end
+
+  describe "#right" do
+    board = Board.new(Constant::BOARD::LENGTH, Constant::BOARD::BREADTH)
+    toy = Toy.new
+    command = Command.new(board, toy, "PLACE 1,2,EAST")
+    command.place
+    it "get toy direction as SOUTH when move toy which is in 1,2,EAST postion" do
+      command.right
+      expect(toy.direction).to eq("SOUTH")
+    end
+
+    it "get toy direction as invalid direction when move toy which is in 1,2,EASTTEST postion" do
+      toy.direction = "EASTTEST"
+      error = command.right
+      expect(error).to eq("invalid direction")
+    end
+
+    it "get toy direction as WEST when move toy which is in 1,2,EAST postion" do
+      toy.direction = "EAST"
+      command.right
+      command.right
+      expect(toy.direction).to eq("WEST")
+    end
+
+    it "get toy direction as WEST when move toy which is in 1,2,NORTH postion" do
+      toy.direction = "NORTH"
+      command.right
+      expect(toy.direction).not_to eq("NORTH")
+      expect(toy.direction).not_to eq("WEST")
+    end
+  end
+
+  describe "#left" do
+    board = Board.new(Constant::BOARD::LENGTH, Constant::BOARD::BREADTH)
+    toy = Toy.new
+    command = Command.new(board, toy, "PLACE 1,2,EAST")
+    command.place
+    it "get toy direction as NORTH when move toy which is in 1,2,EAST postion" do
+      command.left
+      expect(toy.direction).to eq("NORTH")
+    end
+
+    it "get error as invalid direction when move toy which is in 1,2,WESTTEST postion" do
+      toy.direction = "EASTTEST"
+      error = command.left
+      expect(error).to eq("invalid direction")
+    end
+
+    it "get toy direction as SOUTH when move toy which is in 1,2,NORTH postion" do
+      toy.direction = "NORTH"
+      command.left
+      command.left
+      expect(toy.direction).to eq("SOUTH")
+    end
+
+    it "get toy direction as WEST when move toy which is in 1,2,EAST postion" do
+      command.left
+      expect(toy.direction).not_to eq("WEST")
     end
   end
 
