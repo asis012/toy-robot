@@ -19,7 +19,7 @@ class Command
     @toy.x_position = x
     @toy.y_position = y
     @toy.direction = direction
-    return ""
+    ""
   end
 
   # move the toy robot one unit forward in the direction it is currently facing.
@@ -37,6 +37,7 @@ class Command
     when Constant::DIRECTION::SOUTH
       @toy.y_position -= 1
     end
+    ""
   end
 
   # right will rotate the robot 90 degrees in clockwise direction without changing the position of the robot.
@@ -83,15 +84,13 @@ class Command
 
   def validate_move_command
     error = []
-    unless @toy.exist?
+    if toy.nil? || !@toy.exist?
       error << "Cannot move the toy as it doesn't exist in board"
-    end
-
-    if @toy.direction.eql?(Constant::DIRECTION::EAST) && @toy.x_position >= @board.length
+    elsif @toy.direction.eql?(Constant::DIRECTION::EAST) && @toy.x_position >= @board.length - 1
       error << "Toy cannot move in #{@toy.direction} direction as it's next position doesn't exist in board"
     elsif @toy.direction.eql?(Constant::DIRECTION::WEST) && @toy.x_position <= 0
       error << "Toy cannot move in #{@toy.direction} direction as it's next position doesn't exist in board"
-    elsif @toy.direction.eql?(Constant::DIRECTION::NORTH) && @toy.y_position >= @board.breadth
+    elsif @toy.direction.eql?(Constant::DIRECTION::NORTH) && @toy.y_position >= @board.breadth - 1
       error << "Toy cannot move in #{@toy.direction} direction as it's next position doesn't exist in board"
     elsif @toy.direction.eql?(Constant::DIRECTION::SOUTH) && @toy.y_position <= 0
       error << "Toy cannot move in #{@toy.direction} direction as it's next position doesn't exist in board"

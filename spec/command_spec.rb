@@ -19,29 +19,29 @@ RSpec.describe Command do
     end
 
     it "place toy with invalid x position command PLACE 10,0,NORTH" do
-        command = Command.new(board, toy, "PLACE 10,2,EAST")
-        error = command.place
-        expect(error).to include("X position can't be 5 or more than 5")
+      command = Command.new(board, toy, "PLACE 10,2,EAST")
+      error = command.place
+      expect(error).to include("X position can't be 5 or more than 5")
     end
 
     it "place toy with invalid y position command PLACE 10,0,NORTH" do
-        command = Command.new(board, toy, "PLACE 0,12,EAST")
-        error = command.place
-        expect(error).to include("Y position can't be 5 or more than 5")
+      command = Command.new(board, toy, "PLACE 0,12,EAST")
+      error = command.place
+      expect(error).to include("Y position can't be 5 or more than 5")
     end
 
     it "place toy with invalid direction command PLACE 0,2,EASTWEST" do
-        command = Command.new(board, toy, "PLACE 0,2,EASTWEST")
-        error = command.place
-        expect(error).to include('direction should be either NORTH or SOUTH or EAST or WEST')
+      command = Command.new(board, toy, "PLACE 0,2,EASTWEST")
+      error = command.place
+      expect(error).to include("direction should be either NORTH or SOUTH or EAST or WEST")
     end
 
     it "place toy with invalid x,y,direction command PLACE -10,-10,EASTWEST" do
-        command = Command.new(board, toy, "PLACE -10,-10,EASTWEST")
-        error = command.place
-        expect(error[0]).to include("X position can't be less than 0")
-        expect(error[1]).to include("Y position can't be less than 0")
-        expect(error[2]).to include("direction should be either NORTH or SOUTH or EAST or WEST")
+      command = Command.new(board, toy, "PLACE -10,-10,EASTWEST")
+      error = command.place
+      expect(error[0]).to include("X position can't be less than 0")
+      expect(error[1]).to include("Y position can't be less than 0")
+      expect(error[2]).to include("direction should be either NORTH or SOUTH or EAST or WEST")
     end
   end
 
@@ -49,39 +49,38 @@ RSpec.describe Command do
     board = Board.new(Constant::BOARD::LENGTH, Constant::BOARD::BREADTH)
     toy = Toy.new
 
-    it "place toy with valid command PLACE 1,2,East" do
+    it "move toy which is in 1,2,EAST postion " do
       command = Command.new(board, toy, "PLACE 1,2,EAST")
-      error = command.place
-      expect(command.toy.x_position).to eq(1)
-      expect(command.toy.y_position).to eq(2)
-      expect(command.toy.direction).to eq("EAST")
-      expect(error).to eq("")
+      command.place
+      command.move
+      expect(command.toy.x_position).to eq(2)
     end
 
-    it "place toy with invalid x position command PLACE 10,0,NORTH" do
-        command = Command.new(board, toy, "PLACE 10,2,EAST")
-        error = command.place
-        expect(error).to include("X position can't be 5 or more than 5")
+    it "move toy which is in 1,2,SOUTH postion" do
+      command = Command.new(board, toy, "PLACE 1,2,SOUTH")
+      command.place
+      command.move
+      expect(command.toy.y_position).to eq(1)
     end
 
-    it "place toy with invalid y position command PLACE 10,0,NORTH" do
-        command = Command.new(board, toy, "PLACE 0,12,EAST")
-        error = command.place
-        expect(error).to include("Y position can't be 5 or more than 5")
+    it "move empty toy without placing" do
+      command = Command.new(board, nil, nil)
+      error = command.move
+      expect(error).to include("Cannot move the toy as it doesn't exist in board")
     end
 
-    it "place toy with invalid direction command PLACE 0,2,EASTWEST" do
-        command = Command.new(board, toy, "PLACE 0,2,EASTWEST")
-        error = command.place
-        expect(error).to include('direction should be either NORTH or SOUTH or EAST or WEST')
+    it "move toy which is in 4,4,SOUTH postion" do
+      command = Command.new(board, Toy.new, "PLACE 4,4,EAST")
+      command.place
+      error = command.move
+      expect(error).to include("Toy cannot move in EAST direction as it's next position doesn't exist in board")
     end
 
-    it "place toy with invalid x,y,direction command PLACE -10,-10,EASTWEST" do
-        command = Command.new(board, toy, "PLACE -10,-10,EASTWEST")
-        error = command.place
-        expect(error[0]).to include("X position can't be less than 0")
-        expect(error[1]).to include("Y position can't be less than 0")
-        expect(error[2]).to include("direction should be either NORTH or SOUTH or EAST or WEST")
+    it "move toy which is in 4,4,SOUTH postion" do
+      command = Command.new(board, Toy.new, "PLACE 0,0,WEST")
+      command.place
+      error = command.move
+      expect(error).to include("Toy cannot move in WEST direction as it's next position doesn't exist in board")
     end
   end
 
