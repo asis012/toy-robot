@@ -38,14 +38,18 @@ class Command
 	end
 
 
+# right will rotate the robot 90 degrees in clockwise direction without changing the position of the robot.
 	def right
     current_direction = @toy.direction
     new_direction_index = (Constant::DIRECTIONS.index(current_direction) + 1) % Constant::DIRECTIONS.length
     @toy.direction = Constant::DIRECTIONS[new_direction_index]
 	end
 
+# left will rotate the robot 90 degrees in anit-clockwise direction without changing the position of the robot.
 	def left
-		puts "left"
+    current_direction = @toy.direction
+    new_direction_index = (Constant::DIRECTIONS.index(current_direction) - 1) % Constant::DIRECTIONS.length
+    @toy.direction = Constant::DIRECTIONS[new_direction_index]
 	end
 
 # reprot will announce the X, Y and orientation of the robot.
