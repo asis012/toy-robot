@@ -1,12 +1,11 @@
 def start_game
-  require "pry"
   require_relative "board"
   require_relative "toy"
   require_relative "command"
   require_relative "../config/constant"
 
-  instruction_message = "Enter PLACE X,Y,F to place toy in x,y position with f direction \n Enter MOVE to move forward \n Enter LEFT to rotate 90 degrees by left \n Enter RIGHT to rotate 90 degrees by right \n Enter REPORT to get final state"
-  puts "Welcome to the toy robot simulation."
+  instruction_message = " Enter PLACE X,Y,F to place Toy in x,y position with f direction \n Enter MOVE to move forward \n Enter LEFT to rotate 90 degrees by left \n Enter RIGHT to rotate 90 degrees by right \n Enter REPORT to get final postion of Toy"
+  puts "Welcome to the Toy robot simulation."
   puts instruction_message
   puts "---------------:"
   puts "Enter inital position:"
@@ -27,11 +26,12 @@ def start_game
       puts "ERROR: #{error}" if error.is_a?(Array) && error.length > 0
 
     when Constant::ACTION::LEFT
-      @command.left
+      error = @command.left
+      puts "ERROR: #{error}" if error != ""
 
     when Constant::ACTION::RIGHT
-      @command.right
-
+      error = @command.right
+      puts "ERROR: #{error}" if error != ""
     when Constant::ACTION::REPORT
       puts @command.report
 
@@ -41,6 +41,8 @@ def start_game
     else
       puts "---------------:"
       puts "Invalid Instruction. Please follow below instruction \n" + instruction_message
+      puts "---------------:"
+
     end
   end
 end
