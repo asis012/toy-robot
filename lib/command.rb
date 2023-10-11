@@ -27,13 +27,13 @@ class Command
 
     case @toy.direction
     when Constant::DIRECTION::EAST
-      @toy.x_position =  @toy.x_position + 1
+      @toy.x_position += 1
     when Constant::DIRECTION::WEST
-      @toy.x_position =  @toy.x_position - 1
+      @toy.x_position -= 1
     when Constant::DIRECTION::NORTH
-      @toy.y_position =  @toy.y_position + 1
+      @toy.y_position += 1
     when Constant::DIRECTION::SOUTH
-      @toy.y_position = @toy.y_position - 1
+      @toy.y_position -= 1
     end
 	end
 
