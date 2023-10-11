@@ -19,6 +19,7 @@ class Command
     @toy.x_position = x
     @toy.y_position = y
     @toy.direction = direction
+    return ""
   end
 
   # move the toy robot one unit forward in the direction it is currently facing.
@@ -73,6 +74,9 @@ class Command
     end
     if y > @board.breadth
       error << "Y direction is more than board size #{@board.length}"
+    end
+    if !Constant::DIRECTIONS.include?(direction)
+      error << "direction should be NORTH,SOUTH,EAST,WEST"
     end
     error
   end
