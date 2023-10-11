@@ -22,22 +22,21 @@ Constraints:
 The toy robot must not fall off the table during movement. This also includes the initial placement of the toy robot. Any move that would cause the robot to fall must be ignored.
 
 Example Input and Output: 
-a)
-``
+- ``
 PLACE 0,0, NORTH
 MOVE
 REPORT
 Output: 0,1, NORTH
 ``
-b)
-``
+
+- ``
 PLACE 0,0,NORTH
 LEFT
 REPORT
 Output: 0,0,WEST
 ``
-c)
-``
+
+- ``
 PLACE 1,2,EAST
 MOVE
 MOVE
@@ -46,3 +45,27 @@ MOVE
 REPORT
 Output: 3,3,NORTH
 ``
+
+## Getting Started
+Use `make run` to run all tests.
+```
+❯ make test
+ruby lib/game.rb
+```
+
+Use `make test` to run all tests.
+```
+❯ make test
+bundle exec rspec
+```
+
+Use `make lint` to check code for style issues.
+
+```
+❯ make lint
+bundle exec standardrb lib spec
+```
+
+## DEMO
+https://github.com/asis012/toy-robot/assets/25348039/41ee8aac-0da9-4cde-a74c-249b15d37e40
+
