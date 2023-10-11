@@ -64,19 +64,19 @@ class Command
   def validate_place_command(x, y, direction)
     error = []
     if x < 0
-      error << "X direction cann't be less than 0"
+      error << "X position can't be less than 0"
     end
     if y < 0
-      error << "Y direction cann't be less than 0"
+      error << "Y position can't be less than 0"
     end
-    if x > @board.length
-      error << "X direction is more than board size #{@board.length}"
+    if x >= @board.length
+      error << "X position can't be #{@board.length} or more than #{@board.length}"
     end
-    if y > @board.breadth
-      error << "Y direction is more than board size #{@board.length}"
+    if y >= @board.breadth
+      error << "Y position can't be #{@board.length} or more than #{@board.length}"
     end
     if !Constant::DIRECTIONS.include?(direction)
-      error << "direction should be NORTH,SOUTH,EAST,WEST"
+      error << "direction should be either NORTH or SOUTH or EAST or WEST"
     end
     error
   end
