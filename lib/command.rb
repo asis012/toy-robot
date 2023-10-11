@@ -1,4 +1,6 @@
 class Command
+  attr_accessor :board, :toy, :command
+
   def initialize(board, toy, command)
     @board = board
     @toy = toy
@@ -52,7 +54,8 @@ class Command
 
   # reprot will announce the X, Y and orientation of the robot.
   def report
-    "Output:" + @toy.x_position.to_s + "," + @toy.y_position.to_s + "," + @toy.direction
+    return "unable to get report as toy doesn't exist" if toy.nil? || !@toy.exist?
+    "Output: #{@toy.x_position},#{@toy.y_position},#{@toy.direction}"
   end
 
   private
