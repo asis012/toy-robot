@@ -52,7 +52,7 @@ class Command
 
   # reprot will announce the X, Y and orientation of the robot.
   def report
-    @toy.x_position.to_s + "," + @toy.y_position.to_s + "," + @toy.direction
+    "Output:" + @toy.x_position.to_s + "," + @toy.y_position.to_s + "," + @toy.direction
   end
 
   private
