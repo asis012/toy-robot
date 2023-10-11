@@ -1,9 +1,9 @@
-def start_game
-  require_relative "board"
-  require_relative "toy"
-  require_relative "command"
-  require_relative "../config/constant"
+require_relative "board"
+require_relative "toy"
+require_relative "command"
+require_relative "../config/constant"
 
+def start_game
   instruction_message = " Enter PLACE X,Y,F to place Toy in x,y position with f direction \n Enter MOVE to move forward \n Enter LEFT to rotate 90 degrees by left \n Enter RIGHT to rotate 90 degrees by right \n Enter REPORT to get final postion of Toy"
   puts "Welcome to the Toy robot simulation."
   puts instruction_message
