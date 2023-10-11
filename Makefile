@@ -4,3 +4,5 @@ run:
 test:
 	bundle exec rspec
 
+lint:
+	bundle exec standardrb -a lib spec
