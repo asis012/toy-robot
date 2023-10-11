@@ -67,5 +67,5 @@ bundle exec standardrb lib spec
 ```
 
 ## DEMO
-https://github.com/asis012/toy-robot/assets/25348039/41ee8aac-0da9-4cde-a74c-249b15d37e40
+https://github.com/asis012/toy-robot/assets/25348039/a5931dc2-28cd-4cdc-a35a-4354cb839340
 
