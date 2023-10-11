@@ -20,7 +20,7 @@ RSpec.describe Toy do
 
     it "initialize toy with x and y position attributes only" do
       toy = Toy.new(2, 2)
-      expect(toy.exist?).to eq(true)
+      expect(toy.exist?).to eq(false)
     end
 
     it "initialize toy without any attributes" do

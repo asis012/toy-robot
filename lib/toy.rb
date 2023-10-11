@@ -8,6 +8,6 @@ class Toy
   end
 
   def exist?
-    return !@x_position.nil? || !@y_position.nil? || !@direction.nil?
+    !@x_position.nil? && !@y_position.nil? && !@direction.nil?
   end
 end
