@@ -46,6 +46,7 @@ class Command
     return "invalid direction" unless Constant::DIRECTIONS.include?(current_direction)
     new_direction_index = (Constant::DIRECTIONS.index(current_direction) + 1) % Constant::DIRECTIONS.length
     @toy.direction = Constant::DIRECTIONS[new_direction_index]
+    ""
   end
 
   # left will rotate the robot 90 degrees in anit-clockwise direction without changing the position of the robot.
@@ -54,6 +55,7 @@ class Command
     return "invalid direction" unless Constant::DIRECTIONS.include?(current_direction)
     new_direction_index = (Constant::DIRECTIONS.index(current_direction) - 1) % Constant::DIRECTIONS.length
     @toy.direction = Constant::DIRECTIONS[new_direction_index]
+    ""
   end
 
   # reprot will announce the X, Y and orientation of the robot.
