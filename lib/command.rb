@@ -37,15 +37,15 @@ class Command
     end
 	end
 
+
 	def right
-
-		puts "right"
-
+    current_direction = @toy.direction
+    new_direction_index = (Constant::DIRECTIONS.index(current_direction) + 1) % Constant::DIRECTIONS.length
+    @toy.direction = Constant::DIRECTIONS[new_direction_index]
 	end
 
 	def left
 		puts "left"
-
 	end
 
 # reprot will announce the X, Y and orientation of the robot.

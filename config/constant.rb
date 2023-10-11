@@ -6,6 +6,13 @@ module Constant
     WEST= "WEST"
   end
 
+  DIRECTIONS = %w[
+    NORTH 
+    EAST 
+    SOUTH 
+    WEST
+  ].freeze
+
   module ACTION
     PLACE = "PLACE"
     MOVE = "MOVE"
