@@ -2,7 +2,6 @@ require "./lib/command"
 require "./lib/toy"
 require "./lib/board"
 require "./config/constant"
-require "pry"
 
 RSpec.describe Command do
   describe "#place" do

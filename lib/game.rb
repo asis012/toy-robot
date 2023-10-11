@@ -1,5 +1,4 @@
 def start_game
-  require "pry"
   require_relative "board"
   require_relative "toy"
   require_relative "command"
